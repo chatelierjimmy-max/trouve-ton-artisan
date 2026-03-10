@@ -1,9 +1,14 @@
+import Hero from "../components/home/Hero";
+import Steps from "../components/home/Steps";
+import FeaturedArtisans from "../components/home/FeaturedArtisans";
+
 function Home() {
   return (
-    <div className="container py-5">
-      <h1>Trouve ton artisan</h1>
-      <p>Bienvenue sur la plateforme.</p>
-    </div>
+    <>
+      <Hero />
+      <Steps />
+      <FeaturedArtisans />
+    </>
   );
 }
 
