@@ -1,10 +1,7 @@
+import AppRouter from "./router/AppRouter";
+
 function App() {
-  return (
-    <div className="container py-5">
-      <h1>Trouve ton artisan</h1>
-      <p>Structure frontend initialisée avec succès.</p>
-    </div>
-  );
+  return <AppRouter />;
 }
 
 export default App;
