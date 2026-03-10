@@ -1,0 +1,49 @@
+:root {
+  --color-background: #f1f8fc;
+  --color-primary: #0074c7;
+  --color-secondary: #00497c;
+  --color-dark: #384050;
+  --color-danger: #cd2c2e;
+  --color-success: #82b864;
+  --color-white: #ffffff;
+  --font-base: Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-base);
+  background-color: var(--color-background);
+  color: var(--color-dark);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.container-narrow {
+  max-width: 960px;
+  margin: 0 auto;
+}
