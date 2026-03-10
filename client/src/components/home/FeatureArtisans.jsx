@@ -1,8 +1,8 @@
-import { artisans } from "../../data/artisans";
-import ArtisanCard from "../artisan/ArtisanCard";
+import { artisans } from '../../data/artisans'
+import ArtisanCard from '../artisan/ArtisanCard'
 
 function FeaturedArtisans() {
-  const featured = artisans.filter((artisan) => artisan.isTop).slice(0, 3);
+  const featured = artisans.filter((artisan) => artisan.isTop).slice(0, 3)
 
   return (
     <section className="bg-light py-5">
@@ -18,7 +18,7 @@ function FeaturedArtisans() {
         </div>
       </div>
     </section>
-  );
+  )
 }
 
-export default FeaturedArtisans;
+export default FeaturedArtisans
