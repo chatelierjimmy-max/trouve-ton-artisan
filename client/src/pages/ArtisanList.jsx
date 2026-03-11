@@ -1,17 +1,38 @@
-
-import { useMemo } from 'react'
-import { useSearchParams } from 'react-router-dom'
-import { artisans } from '../data/artisans'
-import ArtisanCard from '../components/artisan/ArtisanCard'
+import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import { getArtisans } from "../services/api";
+import ArtisanCard from "../components/artisan/ArtisanCard";
 
 function ArtisanList() {
-  const [searchParams] = useSearchParams()
-  const selectedCategory = searchParams.get('category')
+  const [searchParams] = useSearchParams();
+  const selectedCategory = searchParams.get("category");
+
+  const [artisans, setArtisans] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchArtisans = async () => {
+      try {
+        const response = await getArtisans();
+        setArtisans(response.data);
+      } catch (err) {
+        setError("Impossible de charger les artisans.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchArtisans();
+  }, []);
 
   const filteredArtisans = useMemo(() => {
-    if (!selectedCategory) return artisans
-    return artisans.filter((artisan) => artisan.category === selectedCategory)
-  }, [selectedCategory])
+    if (!selectedCategory) return artisans;
+
+    return artisans.filter(
+      (artisan) => artisan.specialty?.category?.slug === selectedCategory,
+    );
+  }, [artisans, selectedCategory]);
 
   return (
     <section className="container py-5">
@@ -23,15 +44,20 @@ function ArtisanList() {
         </p>
       )}
 
-      <div className="row g-4">
-        {filteredArtisans.map((artisan) => (
-          <div className="col-12 col-md-6 col-lg-4" key={artisan.id}>
-            <ArtisanCard artisan={artisan} />
-          </div>
-        ))}
-      </div>
+      {loading && <p>Chargement...</p>}
+      {error && <p>{error}</p>}
+
+      {!loading && !error && (
+        <div className="row g-4">
+          {filteredArtisans.map((artisan) => (
+            <div className="col-12 col-md-6 col-lg-4" key={artisan.id}>
+              <ArtisanCard artisan={artisan} />
+            </div>
+          ))}
+        </div>
+      )}
     </section>
-  )
+  );
 }
 
-export default ArtisanList
+export default ArtisanList;
