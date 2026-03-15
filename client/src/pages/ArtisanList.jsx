@@ -12,18 +12,17 @@ function ArtisanList() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const fetchArtisans = async () => {
-      try {
-        const response = await getArtisans();
-        setArtisans(response.data);
-      } catch (err) {
+    getArtisans()
+      .then(({ data }) => {
+        setArtisans(data);
+      })
+      .catch((err) => {
+        console.error("Erreur artisans :", err);
         setError("Impossible de charger les artisans.");
-      } finally {
+      })
+      .finally(() => {
         setLoading(false);
-      }
-    };
-
-    fetchArtisans();
+      });
   }, []);
 
   const filteredArtisans = useMemo(() => {
@@ -44,10 +43,22 @@ function ArtisanList() {
         </p>
       )}
 
-      {loading && <p>Chargement...</p>}
-      {error && <p>{error}</p>}
+      {loading && (
+        <div className="text-center py-5">
+          <div className="spinner-border text-primary" role="status"></div>
+          <p className="mt-3">Chargement des artisans...</p>
+        </div>
+      )}
 
-      {!loading && !error && (
+      {error && <div className="alert alert-danger mt-4">{error}</div>}
+
+      {!loading && !error && filteredArtisans.length === 0 && (
+        <div className="alert alert-warning mt-4">
+          Aucun artisan trouvé pour cette catégorie.
+        </div>
+      )}
+
+      {!loading && !error && filteredArtisans.length > 0 && (
         <div className="row g-4">
           {filteredArtisans.map((artisan) => (
             <div className="col-12 col-md-6 col-lg-4" key={artisan.id}>

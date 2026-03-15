@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
-
+const contactRoutes = require("./routes/contactRoutes");
 const artisanRoutes = require("./routes/artisanRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
 const specialtyRoutes = require("./routes/specialtyRoutes");
@@ -37,5 +37,6 @@ app.get("/api/health", (req, res) => {
 app.use("/api/categories", categoryRoutes);
 app.use("/api/specialties", specialtyRoutes);
 app.use("/api/artisans", artisanRoutes);
+app.use("/api/contact", contactRoutes);
 
 module.exports = app;

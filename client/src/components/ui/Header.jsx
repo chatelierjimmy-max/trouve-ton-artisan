@@ -12,8 +12,11 @@ function Header() {
           <Link to="/" className="text-white me-3">
             Accueil
           </Link>
-          <Link to="/artisans" className="text-white">
+          <Link to="/artisans" className="text-white me-3">
             Artisans
+          </Link>
+          <Link to="/contact" className="text-white">
+            Contact
           </Link>
         </nav>
       </div>

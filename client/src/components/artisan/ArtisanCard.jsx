@@ -7,8 +7,7 @@ function ArtisanCard({ artisan }) {
         <h3 className="h5 card-title">{artisan.name}</h3>
 
         <p className="mb-1">
-          <strong>Spécialité :</strong>{" "}
-          {artisan.specialty?.name || artisan.specialty}
+          <strong>Spécialité :</strong> {artisan.specialty?.name}
         </p>
 
         <p className="mb-1">

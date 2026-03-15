@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { getArtisanBySlug } from "../services/api";
 
 function ArtisanDetail() {
@@ -10,24 +10,24 @@ function ArtisanDetail() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const fetchArtisan = async () => {
-      try {
-        const response = await getArtisanBySlug(slug);
-        setArtisan(response.data);
-      } catch (err) {
+    getArtisanBySlug(slug)
+      .then(({ data }) => {
+        setArtisan(data);
+      })
+      .catch((err) => {
+        console.error("Erreur fiche artisan :", err);
         setError("Impossible de charger la fiche artisan.");
-      } finally {
+      })
+      .finally(() => {
         setLoading(false);
-      }
-    };
-
-    fetchArtisan();
+      });
   }, [slug]);
 
   if (loading) {
     return (
-      <section className="container py-5">
-        <p>Chargement...</p>
+      <section className="container py-5 text-center">
+        <div className="spinner-border text-primary" role="status"></div>
+        <p className="mt-3">Chargement de la fiche artisan...</p>
       </section>
     );
   }
@@ -35,7 +35,7 @@ function ArtisanDetail() {
   if (error) {
     return (
       <section className="container py-5">
-        <p>{error}</p>
+        <div className="alert alert-danger">{error}</div>
       </section>
     );
   }
@@ -43,7 +43,7 @@ function ArtisanDetail() {
   if (!artisan) {
     return (
       <section className="container py-5">
-        <p>Artisan introuvable.</p>
+        <div className="alert alert-warning">Artisan introuvable.</div>
       </section>
     );
   }
@@ -52,33 +52,45 @@ function ArtisanDetail() {
     <section className="container py-5">
       <h1 className="mb-4">{artisan.name}</h1>
 
-      <p>
-        <strong>Spécialité :</strong> {artisan.specialty?.name}
-      </p>
-      <p>
-        <strong>Catégorie :</strong> {artisan.specialty?.category?.name}
-      </p>
-      <p>
-        <strong>Ville :</strong> {artisan.city}
-      </p>
-      <p>
-        <strong>Note :</strong> {artisan.rating} / 5
-      </p>
-      <p>
-        <strong>À propos :</strong> {artisan.about}
-      </p>
-      <p>
-        <strong>Email :</strong> {artisan.email}
-      </p>
+      <div className="card shadow-sm">
+        <div className="card-body">
+          <p>
+            <strong>Spécialité :</strong> {artisan.specialty?.name}
+          </p>
 
-      {artisan.website && (
-        <p>
-          <strong>Site web :</strong>{" "}
-          <a href={artisan.website} target="_blank" rel="noreferrer">
-            Visiter le site
-          </a>
-        </p>
-      )}
+          <p>
+            <strong>Catégorie :</strong> {artisan.specialty?.category?.name}
+          </p>
+
+          <p>
+            <strong>Ville :</strong> {artisan.city}
+          </p>
+
+          <p>
+            <strong>Note :</strong> {artisan.rating} / 5
+          </p>
+
+          <p>
+            <strong>À propos :</strong>
+            <br />
+            {artisan.about}
+          </p>
+
+          <p>
+            <strong>Email :</strong>{" "}
+            <a href={`mailto:${artisan.email}`}>{artisan.email}</a>
+          </p>
+
+          {artisan.website && (
+            <p>
+              <strong>Site web :</strong>{" "}
+              <a href={artisan.website} target="_blank" rel="noreferrer">
+                Visiter le site
+              </a>
+            </p>
+          )}
+        </div>
+      </div>
     </section>
   );
 }
