@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { getArtisans } from "../services/api";
 import ArtisanCard from "../components/artisan/ArtisanCard";
+import Loader from "../components/ui/Loader";
 
 function ArtisanList() {
   const [searchParams] = useSearchParams();
@@ -43,12 +44,7 @@ function ArtisanList() {
         </p>
       )}
 
-      {loading && (
-        <div className="text-center py-5">
-          <div className="spinner-border text-primary" role="status"></div>
-          <p className="mt-3">Chargement des artisans...</p>
-        </div>
-      )}
+      {loading && <Loader text="Chargement des artisans..." />}
 
       {error && <div className="alert alert-danger mt-4">{error}</div>}
 

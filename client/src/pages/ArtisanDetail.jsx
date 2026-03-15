@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getArtisanBySlug } from "../services/api";
+import Loader from "../components/ui/Loader";
 
 function ArtisanDetail() {
   const { slug } = useParams();
@@ -25,9 +26,8 @@ function ArtisanDetail() {
 
   if (loading) {
     return (
-      <section className="container py-5 text-center">
-        <div className="spinner-border text-primary" role="status"></div>
-        <p className="mt-3">Chargement de la fiche artisan...</p>
+      <section className="container py-5">
+        <Loader text="Chargement de la fiche artisan..." />
       </section>
     );
   }

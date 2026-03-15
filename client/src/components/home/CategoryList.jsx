@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Loader from "../ui/Loader";
 
 function CategoryList() {
   const [categories, setCategories] = useState([]);
@@ -39,12 +40,7 @@ function CategoryList() {
       <div className="container">
         <h2 className="text-center mb-4">Catégories d'artisans</h2>
 
-        {loading && (
-          <div className="text-center py-5">
-            <div className="spinner-border text-primary" role="status"></div>
-            <p className="mt-3">Chargement des catégories...</p>
-          </div>
-        )}
+        {loading && <Loader text="Chargement des catégories..." />}
 
         {error && <div className="alert alert-danger mt-4">{error}</div>}
 
