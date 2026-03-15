@@ -1,3 +1,7 @@
+@use "./variables";
+@use "./buttons";
+@use "./layout";
+
 :root {
   --color-background: #f1f8fc;
   --color-primary: #0074c7;
@@ -24,11 +28,17 @@ body {
   font-family: var(--font-base);
   background-color: var(--color-background);
   color: var(--color-dark);
+  line-height: 1.5;
 }
 
 a {
   text-decoration: none;
   color: inherit;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
 }
 
 img {
