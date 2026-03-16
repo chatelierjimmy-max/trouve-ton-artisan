@@ -90,6 +90,10 @@ trouve-ton-artisan/
 │ ├── categories.sql
 │ ├── specialties.sql
 │ ├── artisans.sql
+│   ├─ artisans.csv
+│   ├─ sql-import-artisans-1.sql
+│   ├─ sql-import-artisans-2.sql
+│   └─ sql-verification.sql
 ├── seed.sql
 │
 ├── docs/
