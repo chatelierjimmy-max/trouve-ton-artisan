@@ -46,6 +46,12 @@ img {
   display: block;
 }
 
+.logo {
+  height: 42px;
+  width: auto;
+  display: block;
+}
+
 button,
 input,
 textarea,
@@ -56,4 +62,10 @@ select {
 .container-narrow {
   max-width: 960px;
   margin: 0 auto;
+}
+
+.site-title {
+  color: white;
+  font-weight: bold;
+  font-size: 1.3rem;
 }
