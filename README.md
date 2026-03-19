@@ -90,10 +90,10 @@ trouve-ton-artisan/
 │ ├── categories.sql
 │ ├── specialties.sql
 │ ├── artisans.sql
-│   ├─ artisans.csv
-│   ├─ sql-import-artisans-1.sql
-│   ├─ sql-import-artisans-2.sql
-│   └─ sql-verification.sql
+│ ├─ artisans.csv
+│ ├─ sql-import-artisans-1.sql
+│ ├─ sql-import-artisans-2.sql
+│ └─ sql-verification.sql
 ├── seed.sql
 │
 ├── docs/
@@ -241,6 +241,20 @@ Fonctionnalités implémentées :
 - gestion des erreurs
 
 - affichage dynamique des données
+
+Maquettes Figma
+
+Desktop :
+
+![Desktop](docs/desktop.png)
+
+Tablette :
+
+![Tablette](docs/tablette.png)
+
+Mobile :
+
+![Mobile](docs/mobile.png)
 
 Auteur
 
