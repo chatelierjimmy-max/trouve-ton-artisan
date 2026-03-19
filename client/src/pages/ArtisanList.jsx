@@ -7,7 +7,7 @@ import Loader from "../components/ui/Loader";
 function ArtisanList() {
   const [searchParams] = useSearchParams();
   const selectedCategory = searchParams.get("category");
-
+  const searchTerm = searchParams.get("search");
   const [artisans, setArtisans] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -27,12 +27,26 @@ function ArtisanList() {
   }, []);
 
   const filteredArtisans = useMemo(() => {
-    if (!selectedCategory) return artisans;
+    let result = artisans;
 
-    return artisans.filter(
-      (artisan) => artisan.specialty?.category?.slug === selectedCategory,
-    );
-  }, [artisans, selectedCategory]);
+    if (selectedCategory) {
+      result = result.filter(
+        (artisan) => artisan.specialty?.category?.slug === selectedCategory,
+      );
+    }
+
+    if (searchTerm) {
+      result = result.filter(
+        (artisan) =>
+          artisan.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          artisan.specialty?.name
+            ?.toLowerCase()
+            .includes(searchTerm.toLowerCase()),
+      );
+    }
+
+    return result;
+  }, [artisans, selectedCategory, searchTerm]);
 
   return (
     <section className="container py-5">
