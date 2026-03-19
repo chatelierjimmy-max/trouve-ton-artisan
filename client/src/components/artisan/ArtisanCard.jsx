@@ -1,6 +1,20 @@
 import { Link } from "react-router-dom";
 
 function ArtisanCard({ artisan }) {
+  const renderStars = (rating) => {
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 >= 0.5;
+    const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
+    return (
+      <>
+        {"★".repeat(fullStars)}
+        {hasHalfStar && "⯨"}
+        {"☆".repeat(emptyStars)}
+      </>
+    );
+  };
+
   return (
     <article className="card h-100 shadow-sm">
       <div className="card-body d-flex justify-content-between align-items-start">
@@ -17,9 +31,15 @@ function ArtisanCard({ artisan }) {
             <strong>Ville :</strong> {artisan.city}
           </p>
 
-          <p className="mb-3">
-            <strong>Note :</strong> {artisan.rating} / 5
-          </p>
+          <div className="mb-3 d-flex justify-content-between align-items-center">
+            <p className="mb-0">
+              <strong>Note :</strong> {artisan.rating} / 5
+            </p>
+
+            <div className="text-warning fs-5">
+              {renderStars(artisan.rating)}
+            </div>
+          </div>
 
           <Link to={`/artisan/${artisan.slug}`} className="btn btn-primary">
             Voir la fiche
