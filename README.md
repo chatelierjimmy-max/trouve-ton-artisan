@@ -244,6 +244,8 @@ Fonctionnalités implémentées :
 
 Maquettes Figma
 
+Lien Figma : https://www.figma.com/design/IE3yzo98u8i6pCPBzguJ3u/Trouve-ton-artisan?node-id=0-1&p=f&t=XuHLp6TBTaHBiAg2-0
+
 Desktop :
 
 ![Desktop](docs/desktop.png)
