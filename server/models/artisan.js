@@ -1,8 +1,12 @@
+// Active le mode strict (sécurité JS)
 'use strict';
+// Import de Model depuis Sequelize
 const { Model } = require('sequelize');
 
+// Export du modèle
 module.exports = (sequelize, DataTypes) => {
-  class Artisan extends Model {
+    class Artisan extends Model {
+    // Méthode pour définir les relations entre modèles
     static associate(models) {
       Artisan.belongsTo(models.Specialty, {
         foreignKey: 'specialtyId',
@@ -11,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
 
+  // Initialisation du modèle avec ses champs
   Artisan.init(
     {
       name: DataTypes.STRING,
@@ -29,5 +34,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
+  // Retour du modèle
   return Artisan;
 };

@@ -1,22 +1,22 @@
 {
   "development": {
     "username": "root",
-    "password": "rafael89!",
-    "database": "trouve_ton_artisan",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "password": "rafael89!", 
+    "database": "trouve_ton_artisan", 
+    "host": "127.0.0.1", 
+    "dialect": "mysql" 
   },
   "test": {
-    "username": "root",
+    "username": "root", 
     "password": "rafael89!",
-    "database": "trouve_ton_artisan_test",
+    "database": "trouve_ton_artisan_test", 
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
+    "username": "root", 
     "password": "rafael89!",
-    "database": "trouve_ton_artisan_prod",
+    "database": "trouve_ton_artisan_prod", 
     "host": "127.0.0.1",
     "dialect": "mysql"
   }

@@ -1,31 +1,37 @@
+/* Container principal : centre le contenu et limite la largeur */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 1rem;
 }
 
+/* Classe générique pour les sections */
 .section {
   padding: 3rem 0;
 }
 
+/* Style du logo */
 .logo {
   height: 42px;
   width: auto;
   display: block;
 }
 
+/* Header (haut du site) */
 header {
   background-color: var(--color-primary);
   color: var(--color-white);
   padding: 1rem 0;
 }
 
+/* Navigation dans le header */
 header nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+/* Footer (bas du site) */
 footer {
   background-color: var(--color-dark);
   color: var(--color-white);

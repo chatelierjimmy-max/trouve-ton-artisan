@@ -1,13 +1,17 @@
+// Envoi d’un message de contact
 const sendContactMessage = async (req, res) => {
   try {
+    // Récupération des données envoyées dans le body
     const { name, email, subject, message, artisanId } = req.body;
 
+    // Vérification des champs obligatoires
     if (!name || !email || !subject || !message) {
       return res.status(400).json({
         message: "Tous les champs obligatoires doivent être remplis.",
       });
     }
 
+    // Réponse simulée de succès
     return res.status(200).json({
       message: "Message envoyé avec succès.",
       data: {
@@ -26,6 +30,7 @@ const sendContactMessage = async (req, res) => {
   }
 };
 
+// Export du controller
 module.exports = {
   sendContactMessage,
 };

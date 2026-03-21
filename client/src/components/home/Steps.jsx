@@ -1,7 +1,11 @@
+// Composant Steps : explique les étapes pour utiliser le site
+// Sert à guider l’utilisateur dans son parcours (UX)
 function Steps() {
   return (
     <section className="py-5">
+      {/* Container Bootstrap pour centrer le contenu */}
       <div className="container">
+        {/* Titre de la section */}
         <h2 className="text-center mb-4">Comment trouver mon artisan ?</h2>
 
         <div className="row text-center">
@@ -30,4 +34,5 @@ function Steps() {
   );
 }
 
+// Export du composant pour l’utiliser dans une page (ex: Home)
 export default Steps;

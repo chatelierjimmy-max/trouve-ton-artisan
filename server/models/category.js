@@ -1,6 +1,9 @@
+// Active le mode strict (sécurité JS)
 'use strict';
+// Import du Model Sequelize
 const { Model } = require('sequelize');
 
+// Export du modèle
 module.exports = (sequelize, DataTypes) => {
   class Category extends Model {
     static associate(models) {
@@ -11,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
 
+  // Initialisation du modèle avec ses champs
   Category.init(
     {
       name: DataTypes.STRING,
@@ -22,5 +26,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
+  // Retour du modèle
   return Category;
 };

@@ -1,6 +1,9 @@
+// Active le mode strict (sécurité JS)
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
+// Export de la migration
 module.exports = {
+  // Création de la table
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Artisans', {
       id: {
@@ -46,6 +49,8 @@ module.exports = {
       }
     });
   },
+
+  // Suppression de la table (rollback)
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Artisans');
   }

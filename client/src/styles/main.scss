@@ -1,6 +1,12 @@
+// IMPORT DES FICHIERS SCSS
+// Import des variables (couleurs, tailles, etc.)
 @use "./variables";
+// Import des styles des boutons
 @use "./buttons";
+// Import des styles de layout (header, footer, etc.)
 @use "./layout";
+
+// VARIABLES CSS
 
 :root {
   --color-background: #f1f8fc;
@@ -13,6 +19,7 @@
   --font-base: Arial, sans-serif;
 }
 
+// RESET / BASE
 *,
 *::before,
 *::after {

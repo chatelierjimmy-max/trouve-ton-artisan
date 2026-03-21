@@ -1,7 +1,9 @@
+// Import des modèles Sequelize nécessaires
 const { Artisan, Specialty, Category } = require("../../models");
-
+// Récupérer tous les artisans
 const getAllArtisans = async (req, res) => {
   try {
+    // Recherche de tous les artisans
     const artisans = await Artisan.findAll({
       include: [
         {
@@ -18,6 +20,7 @@ const getAllArtisans = async (req, res) => {
       order: [["name", "ASC"]],
     });
 
+    // Retourne la liste au format JSON
     res.json(artisans);
   } catch (error) {
     res.status(500).json({
@@ -27,8 +30,10 @@ const getAllArtisans = async (req, res) => {
   }
 };
 
+// Récupérer les artisans du mois
 const getTopArtisans = async (req, res) => {
   try {
+    // Recherche uniquement des artisans mis en avant
     const artisans = await Artisan.findAll({
       where: { isTop: true },
       include: [
@@ -46,6 +51,7 @@ const getTopArtisans = async (req, res) => {
       order: [["name", "ASC"]],
     });
 
+    // Retour des données en JSON
     res.json(artisans);
   } catch (error) {
     res.status(500).json({
@@ -55,10 +61,13 @@ const getTopArtisans = async (req, res) => {
   }
 };
 
+// Récupérer un artisan via son slug
 const getArtisanBySlug = async (req, res) => {
   try {
+    // Récupère le slug envoyé dans l’URL
     const { slug } = req.params;
 
+    // Recherche d’un artisan correspondant
     const artisan = await Artisan.findOne({
       where: { slug },
       include: [
@@ -75,12 +84,14 @@ const getArtisanBySlug = async (req, res) => {
       ],
     });
 
+    // Si aucun artisan n’est trouvé
     if (!artisan) {
       return res.status(404).json({
         message: "Artisan introuvable",
       });
     }
 
+    // Retourne l’artisan trouvé
     res.json(artisan);
   } catch (error) {
     res.status(500).json({
@@ -90,6 +101,7 @@ const getArtisanBySlug = async (req, res) => {
   }
 };
 
+// Export des fonctions du controller
 module.exports = {
   getAllArtisans,
   getTopArtisans,

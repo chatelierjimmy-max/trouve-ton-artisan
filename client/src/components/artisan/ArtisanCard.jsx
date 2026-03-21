@@ -1,6 +1,11 @@
+// on importe link depuis react-router-dom
+// link permet de naviguer entre les pages sans recharger le site
 import { Link } from "react-router-dom";
 
+//composant ArtisanCard
+//il reçoit une prop artisan : les données
 function ArtisanCard({ artisan }) {
+  //fonction pour afficher les étoiles en fonction de la note
   const renderStars = (rating) => {
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 >= 0.5;
@@ -16,7 +21,9 @@ function ArtisanCard({ artisan }) {
   };
 
   return (
+    //carte principale avec bootstrap
     <article className="card h-100 shadow-sm">
+      {/*corp de la carte*/}
       <div className="card-body d-flex justify-content-between align-items-start">
         {/* Partie gauche : infos artisan */}
 
@@ -40,7 +47,7 @@ function ArtisanCard({ artisan }) {
               {renderStars(artisan.rating)}
             </div>
           </div>
-
+          {/*bouton qui mène au détail de l'artisan*/}
           <Link to={`/artisan/${artisan.slug}`} className="btn btn-primary">
             Voir la fiche
           </Link>

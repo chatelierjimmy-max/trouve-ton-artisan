@@ -1,3 +1,4 @@
+/* Classe de base pour tous les boutons */
 .btn {
   display: inline-block;
   padding: 0.6rem 1.2rem;
@@ -9,31 +10,37 @@
   transition: 0.2s ease;
 }
 
+/* Bouton principal (action importante) */
 .btn-primary {
   background-color: var(--color-primary);
   color: var(--color-white);
 }
 
+/* Effet au survol du bouton principal */
 .btn-primary:hover {
   background-color: var(--color-secondary);
 }
 
+/* Bouton succès (validation, confirmation) */
 .btn-success {
   background-color: var(--color-success);
   color: var(--color-white);
 }
 
+/* Bouton danger (suppression, action critique) */
 .btn-danger {
   background-color: var(--color-danger);
   color: var(--color-white);
 }
 
+/* Bouton avec contour uniquement */
 .btn-outline {
   border: 2px solid var(--color-primary);
   background: transparent;
   color: var(--color-primary);
 }
 
+/* Effet au survol du bouton outline */
 .btn-outline:hover {
   background-color: var(--color-primary);
   color: var(--color-white);
