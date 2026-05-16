@@ -19,3 +19,59 @@ main {
 a {
   text-decoration: none;
 }
+
+.btn-primary {
+  background-color: $primary;
+  border-color: $primary;
+}
+
+.btn-primary:hover {
+  background-color: $secondary;
+  border-color: $secondary;
+}
+
+.navbar-brand {
+  color: $secondary;
+}
+
+.card-img-top {
+  height: 220px;
+  object-fit: cover;
+  background-color: #ffffff;
+}
+
+.card {
+  border-radius: 12px;
+}
+
+footer {
+  background-color: $dark;
+}
+
+footer a:hover,
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+}
+
+:focus {
+  outline: 3px solid $primary;
+  outline-offset: 3px;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .navbar form {
+    width: 100%;
+  }
+
+  .navbar input {
+    width: 100%;
+  }
+}
