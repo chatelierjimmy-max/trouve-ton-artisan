@@ -1,0 +1,36 @@
+import { Link } from "react-router-dom";
+
+function ArtisanCard({ artisan }) {
+  return (
+    <div className="col-md-6 col-lg-4 mb-4">
+      <div className="card h-100 shadow-sm border-0">
+        <img src={artisan.image} alt={artisan.name} className="card-img-top" />
+
+        <div className="card-body">
+          <h2 className="h5">{artisan.name}</h2>
+
+          <p className="mb-1">
+            <strong>{artisan.Specialty?.name}</strong>
+          </p>
+
+          <p className="mb-1">{artisan.location}</p>
+
+          <p className="mb-2">⭐ {artisan.note}/5</p>
+
+          <p className="small text-muted">{artisan.about?.slice(0, 100)}...</p>
+        </div>
+
+        <div className="card-footer bg-white border-0">
+          <Link
+            to={`/artisan/${artisan.slug}`}
+            className="btn btn-primary w-100"
+          >
+            Voir le profil
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default ArtisanCard;

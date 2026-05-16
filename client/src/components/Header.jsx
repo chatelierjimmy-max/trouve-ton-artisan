@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 
+import SearchBar from "./SearchBar";
+
 function Header() {
   return (
     <header className="bg-white shadow-sm">
@@ -18,31 +20,35 @@ function Header() {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarContent">
-          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <Link className="nav-link" to="/categorie/batiment">
-                Bâtiment
-              </Link>
-            </li>
+          <div className="ms-auto d-flex align-items-center gap-4 flex-column flex-lg-row">
+            <SearchBar />
 
-            <li className="nav-item">
-              <Link className="nav-link" to="/categorie/services">
-                Services
-              </Link>
-            </li>
+            <ul className="navbar-nav mb-2 mb-lg-0">
+              <li className="nav-item">
+                <Link className="nav-link" to="/categorie/batiment">
+                  Bâtiment
+                </Link>
+              </li>
 
-            <li className="nav-item">
-              <Link className="nav-link" to="/categorie/fabrication">
-                Fabrication
-              </Link>
-            </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/categorie/services">
+                  Services
+                </Link>
+              </li>
 
-            <li className="nav-item">
-              <Link className="nav-link" to="/categorie/alimentation">
-                Alimentation
-              </Link>
-            </li>
-          </ul>
+              <li className="nav-item">
+                <Link className="nav-link" to="/categorie/fabrication">
+                  Fabrication
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                <Link className="nav-link" to="/categorie/alimentation">
+                  Alimentation
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
       </nav>
     </header>

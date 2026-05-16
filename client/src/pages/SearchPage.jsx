@@ -1,19 +1,22 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 import api from "../services/api";
 import ArtisanCard from "../components/ArtisanCard";
 
-function Category() {
-  const { slug } = useParams();
+function SearchPage() {
+  const [searchParams] = useSearchParams();
+
+  const query = searchParams.get("q");
 
   const [artisans, setArtisans] = useState([]);
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchArtisans = async () => {
+    const searchArtisans = async () => {
       try {
-        const response = await api.get(`/artisans/category/${slug}`);
+        const response = await api.get(`/artisans/search?q=${query}`);
 
         setArtisans(response.data);
       } catch (error) {
@@ -23,21 +26,17 @@ function Category() {
       }
     };
 
-    fetchArtisans();
-  }, [slug]);
+    searchArtisans();
+  }, [query]);
 
   return (
     <section className="container py-5">
-      <div className="mb-5">
-        <h1 className="display-5 text-capitalize">Catégorie : {slug}</h1>
-
-        <p className="lead">Découvrez les artisans de cette catégorie.</p>
-      </div>
+      <h1 className="mb-4">Résultats pour : "{query}"</h1>
 
       {loading ? (
         <p>Chargement...</p>
       ) : artisans.length === 0 ? (
-        <p>Aucun artisan trouvé.</p>
+        <p>Aucun résultat trouvé.</p>
       ) : (
         <div className="row">
           {artisans.map((artisan) => (
@@ -49,4 +48,4 @@ function Category() {
   );
 }
 
-export default Category;
+export default SearchPage;

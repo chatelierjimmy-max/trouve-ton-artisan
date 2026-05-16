@@ -6,6 +6,7 @@ import Category from "./pages/Category";
 import ArtisanDetail from "./pages/ArtisanDetail";
 import LegalPage from "./pages/LegalPage";
 import NotFound from "./pages/NotFound";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
           element={<LegalPage title="Accessibilité" />}
         />
         <Route path="/cookies" element={<LegalPage title="Cookies" />} />
-
+        <Route path="/recherche" element={<SearchPage />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
