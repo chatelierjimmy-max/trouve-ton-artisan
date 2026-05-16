@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import api from "../services/api";
 import ArtisanCard from "../components/ArtisanCard";
+import Seo from "../components/Seo";
 
 function Home() {
   const [topArtisans, setTopArtisans] = useState([]);
@@ -24,9 +25,15 @@ function Home() {
 
   return (
     <>
+      <Seo
+        title="Accueil"
+        description="Trouvez facilement un artisan qualifié en Auvergne-Rhône-Alpes."
+      />
+
       <section className="bg-white py-5 border-bottom">
         <div className="container">
           <h1 className="display-5 fw-bold">Trouve ton artisan</h1>
+
           <p className="lead">
             Trouvez facilement un artisan qualifié en Auvergne-Rhône-Alpes.
           </p>
@@ -49,6 +56,7 @@ function Home() {
                   <span className="badge bg-primary mb-3">
                     Étape {index + 1}
                   </span>
+
                   <p className="mb-0">{step}</p>
                 </div>
               </div>
