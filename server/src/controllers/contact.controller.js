@@ -39,13 +39,16 @@ exports.createContactMessage = async (req, res) => {
       message,
     });
 
-    res.status(201).json({
+    return res.status(201).json({
       message: "Message envoyé avec succès",
       data: contactMessage,
     });
   } catch (error) {
-    res.status(500).json({
+    console.error("Erreur contact :", error);
+
+    return res.status(500).json({
       message: "Erreur lors de l’envoi du message",
+      detail: error.message,
     });
   }
 };

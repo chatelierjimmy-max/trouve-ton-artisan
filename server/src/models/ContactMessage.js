@@ -40,9 +40,7 @@ const ContactMessage = sequelize.define(
   },
   {
     tableName: "contact_messages",
-    timestamps: true,
-    createdAt: "created_at",
-    updatedAt: false,
+    timestamps: false,
   },
 );
 

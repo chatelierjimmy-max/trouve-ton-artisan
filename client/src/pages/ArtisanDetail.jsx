@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import api from "../services/api";
+import ContactForm from "../components/ContactForm";
 
 function ArtisanDetail() {
   const { slug } = useParams();
@@ -63,6 +64,7 @@ function ArtisanDetail() {
           <p className="mb-3">Note : ⭐ {artisan.note}/5</p>
 
           <h2 className="h4">À propos</h2>
+
           <p>{artisan.about}</p>
 
           {artisan.website && (
@@ -77,6 +79,8 @@ function ArtisanDetail() {
           )}
         </div>
       </div>
+
+      <ContactForm artisanId={artisan.id} />
     </section>
   );
 }
