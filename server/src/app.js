@@ -13,6 +13,11 @@ const categoryRoutes = require("./routes/category.routes");
 const contactRoutes = require("./routes/contact.routes");
 
 /**
+ * Import des middlewares
+ */
+const errorMiddleware = require("./middlewares/error.middleware");
+
+/**
  * Import Sequelize
  */
 const { sequelize } = require("./models");
@@ -34,9 +39,13 @@ app.use(
 );
 
 /**
- * Lecture du JSON envoyé par le frontend
+ * Lecture et limitation JSON
  */
-app.use(express.json());
+app.use(
+  express.json({
+    limit: "10kb",
+  }),
+);
 
 /**
  * Protection anti-spam formulaire contact
@@ -55,9 +64,7 @@ const contactLimiter = rateLimit({
  * Routes API
  */
 app.use("/api/artisans", artisanRoutes);
-
 app.use("/api/categories", categoryRoutes);
-
 app.use("/api/contact", contactLimiter, contactRoutes);
 
 /**
@@ -77,6 +84,11 @@ app.use((req, res) => {
     message: "Route introuvable",
   });
 });
+
+/**
+ * Middleware global de gestion des erreurs
+ */
+app.use(errorMiddleware);
 
 /**
  * Port serveur
