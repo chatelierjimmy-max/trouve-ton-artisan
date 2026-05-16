@@ -3,21 +3,29 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
+const rateLimit = require("express-rate-limit");
 
+/**
+ * Import des routes API
+ */
 const artisanRoutes = require("./routes/artisan.routes");
 const categoryRoutes = require("./routes/category.routes");
+const contactRoutes = require("./routes/contact.routes");
 
+/**
+ * Import Sequelize
+ */
 const { sequelize } = require("./models");
 
 const app = express();
 
 /**
- * Sécurité HTTP
+ * Sécurisation des headers HTTP
  */
 app.use(helmet());
 
 /**
- * Autorisation CORS
+ * Autorisation des requêtes frontend
  */
 app.use(
   cors({
@@ -26,18 +34,34 @@ app.use(
 );
 
 /**
- * Lecture JSON
+ * Lecture du JSON envoyé par le frontend
  */
 app.use(express.json());
+
+/**
+ * Protection anti-spam formulaire contact
+ * Maximum 5 requêtes toutes les 15 minutes
+ */
+const contactLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 5,
+
+  message: {
+    message: "Trop de tentatives. Réessayez plus tard.",
+  },
+});
 
 /**
  * Routes API
  */
 app.use("/api/artisans", artisanRoutes);
+
 app.use("/api/categories", categoryRoutes);
 
+app.use("/api/contact", contactLimiter, contactRoutes);
+
 /**
- * Route de test
+ * Route principale API
  */
 app.get("/", (req, res) => {
   res.json({
@@ -46,7 +70,7 @@ app.get("/", (req, res) => {
 });
 
 /**
- * Gestion route inexistante
+ * Gestion routes inexistantes
  */
 app.use((req, res) => {
   res.status(404).json({
@@ -54,10 +78,14 @@ app.use((req, res) => {
   });
 });
 
+/**
+ * Port serveur
+ */
 const PORT = process.env.PORT || 5000;
 
 /**
- * Connexion BDD + lancement serveur
+ * Connexion base de données
+ * puis lancement serveur Express
  */
 sequelize
   .authenticate()
