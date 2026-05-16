@@ -1,0 +1,21 @@
+$primary: #0074c7;
+$secondary: #00497c;
+$dark: #384050;
+$light: #f1f8fc;
+$danger: #cd2c2e;
+$success: #82b864;
+
+body {
+  margin: 0;
+  background-color: $light;
+  color: $dark;
+  font-family: Arial, sans-serif;
+}
+
+main {
+  min-height: 70vh;
+}
+
+a {
+  text-decoration: none;
+}
