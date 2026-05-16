@@ -1,0 +1,40 @@
+# MLD - Trouve ton artisan
+
+## Tables
+
+CATEGORY (
+id INT PK,
+name VARCHAR(100) UNIQUE NOT NULL,
+slug VARCHAR(100) UNIQUE NOT NULL
+)
+
+SPECIALTY (
+id INT PK,
+name VARCHAR(100) NOT NULL,
+slug VARCHAR(100) UNIQUE NOT NULL,
+category_id INT FK -> CATEGORY(id)
+)
+
+ARTISAN (
+id INT PK,
+name VARCHAR(150) NOT NULL,
+slug VARCHAR(150) UNIQUE NOT NULL,
+note DECIMAL(2,1),
+location VARCHAR(150) NOT NULL,
+about TEXT,
+email VARCHAR(255) NOT NULL,
+website VARCHAR(255),
+image VARCHAR(255),
+is_top BOOLEAN DEFAULT FALSE,
+specialty_id INT FK -> SPECIALTY(id)
+)
+
+CONTACT_MESSAGE (
+id INT PK,
+name VARCHAR(150) NOT NULL,
+email VARCHAR(255) NOT NULL,
+subject VARCHAR(255) NOT NULL,
+message TEXT NOT NULL,
+artisan_id INT FK -> ARTISAN(id),
+created_at DATETIME
+)

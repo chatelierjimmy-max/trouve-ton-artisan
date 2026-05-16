@@ -1,0 +1,78 @@
+CREATE DATABASE IF NOT EXISTS trouve_ton_artisan
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
+
+USE trouve_ton_artisan;
+
+DROP TABLE IF EXISTS contact_messages;
+DROP TABLE IF EXISTS artisans;
+DROP TABLE IF EXISTS specialties;
+DROP TABLE IF EXISTS categories;
+
+CREATE TABLE categories (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL UNIQUE,
+  slug VARCHAR(100) NOT NULL UNIQUE,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE specialties (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  slug VARCHAR(100) NOT NULL UNIQUE,
+  category_id INT NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+  CONSTRAINT fk_specialties_category
+    FOREIGN KEY (category_id)
+    REFERENCES categories(id)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE
+);
+
+CREATE TABLE artisans (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(150) NOT NULL,
+  slug VARCHAR(150) NOT NULL UNIQUE,
+  note DECIMAL(2,1) NOT NULL DEFAULT 0.0,
+  location VARCHAR(150) NOT NULL,
+  about TEXT,
+  email VARCHAR(255) NOT NULL,
+  website VARCHAR(255),
+  image VARCHAR(255),
+  is_top BOOLEAN DEFAULT FALSE,
+  specialty_id INT NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+  CONSTRAINT fk_artisans_specialty
+    FOREIGN KEY (specialty_id)
+    REFERENCES specialties(id)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE,
+
+  CONSTRAINT chk_artisan_note
+    CHECK (note >= 0 AND note <= 5)
+);
+
+CREATE TABLE contact_messages (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(150) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  subject VARCHAR(255) NOT NULL,
+  message TEXT NOT NULL,
+  artisan_id INT NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+  CONSTRAINT fk_contact_artisan
+    FOREIGN KEY (artisan_id)
+    REFERENCES artisans(id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
+
+CREATE INDEX idx_artisans_name ON artisans(name);
+CREATE INDEX idx_artisans_location ON artisans(location);
+CREATE INDEX idx_specialties_category ON specialties(category_id);
