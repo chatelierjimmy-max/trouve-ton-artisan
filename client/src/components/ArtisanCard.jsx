@@ -1,10 +1,19 @@
 import { Link } from "react-router-dom";
 
+import artisanDefault from "../assets/artisan-default.png";
+
 function ArtisanCard({ artisan }) {
   return (
     <div className="col-md-6 col-lg-4 mb-4">
       <div className="card h-100 shadow-sm border-0">
-        <img src={artisan.image} alt={artisan.name} className="card-img-top" />
+        <img
+          src={artisan.image || artisanDefault}
+          alt={artisan.name}
+          className="card-img-top"
+          onError={(e) => {
+            e.target.src = artisanDefault;
+          }}
+        />
 
         <div className="card-body">
           <h2 className="h5">{artisan.name}</h2>
