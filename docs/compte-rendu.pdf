@@ -1,0 +1,335 @@
+# Compte-rendu de projet — Trouve ton artisan
+
+## Présentation du projet
+
+Le projet « Trouve ton artisan » est une plateforme web permettant aux utilisateurs de rechercher des artisans en région Auvergne-Rhône-Alpes, consulter leurs informations détaillées et les contacter via un formulaire sécurisé.
+
+Le projet a été réalisé avec une architecture Full Stack moderne :
+
+* Frontend : React.js, Bootstrap et Sass
+* Backend : Node.js, Express et Sequelize
+* Base de données : MySQL
+
+L’objectif du projet était de développer une application complète respectant les bonnes pratiques de développement web, l’architecture API REST, la sécurité, le responsive design et l’accessibilité.
+
+# Objectifs du projet
+
+Les objectifs principaux étaient :
+
+* Créer une API REST sécurisée
+* Développer une interface responsive moderne
+* Afficher dynamiquement les artisans depuis la base de données
+* Mettre en place un système de recherche
+* Créer un formulaire de contact sécurisé
+* Respecter les bonnes pratiques SEO et accessibilité
+* Utiliser Git et GitHub avec des commits réguliers
+
+# Technologies utilisées
+
+## Frontend
+
+* React.js
+* React Router DOM
+* Bootstrap 5
+* Sass
+* Axios
+* Vite
+
+## Backend
+
+* Node.js
+* Express.js
+* Sequelize ORM
+* express-validator
+* express-rate-limit
+* Helmet
+* Nodemailer
+* dotenv
+
+## Base de données
+
+* MySQL
+* MySQL Workbench
+
+## Outils
+
+* Git
+* GitHub
+* Visual Studio Code
+* PowerShell
+
+# Architecture du projet
+
+Le projet est organisé en deux parties distinctes :
+
+## Frontend
+
+client/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── layouts/
+│   ├── pages/
+│   ├── services/
+│   ├── styles/
+│   └── App.jsx
+
+## Backend
+
+server/
+├── src/
+│   ├── config/
+│   ├── controllers/
+│   ├── middlewares/
+│   ├── models/
+│   ├── routes/
+│   ├── services/
+│   └── app.js
+
+Cette architecture permet une séparation claire des responsabilités.
+
+# Base de données
+
+La base de données MySQL contient plusieurs tables relationnelles :
+
+## categories
+
+Contient les catégories principales :
+
+* bâtiment
+* services
+* fabrication
+* alimentation
+
+## specialties
+
+Contient les spécialités liées aux catégories.
+
+## artisans
+
+Contient les informations des artisans :
+
+* nom
+* note
+* localisation
+* description
+* image
+* site web
+* slug
+
+## contact_messages
+
+Contient les messages envoyés depuis le formulaire de contact.
+
+# Développement backend
+
+## API REST
+
+Le backend a été développé avec Express.js.
+
+Les routes principales sont :
+
+### Récupération des catégories
+
+GET /api/categories
+
+### Liste des artisans
+
+GET /api/artisans
+
+### Artisans du mois
+
+GET /api/artisans/top
+
+### Recherche d’artisans
+
+GET /api/artisans/search?q=lyon
+
+### Artisans par catégorie
+
+GET /api/artisans/category/batiment
+
+### Détail d’un artisan
+
+GET /api/artisans/chocolaterie-labbe
+
+
+### Formulaire de contact
+
+POST /api/contact
+
+
+# Sécurité backend
+
+Plusieurs protections ont été mises en place.
+
+## Helmet
+
+Helmet protège les headers HTTP contre certaines attaques.
+
+## CORS
+
+Les requêtes frontend sont limitées à l’application React.
+
+## Validation des données
+
+Le package express-validator permet de sécuriser les données du formulaire de contact.
+
+## Rate limiting
+
+Une limitation de requêtes empêche le spam sur le formulaire de contact.
+
+## Variables d’environnement
+
+Les données sensibles sont stockées dans le fichier `.env`.
+
+## Sequelize ORM
+
+Sequelize protège contre les injections SQL.
+
+# Développement frontend
+
+Le frontend a été développé avec React.js.
+
+## Routing React
+
+React Router permet la navigation entre les pages.
+
+Routes principales :
+
+/
+/categorie/:slug
+/artisan/:slug
+/recherche
+
+## Pages développées
+
+### Accueil
+
+* présentation du site
+* étapes d’utilisation
+* artisans du mois
+
+### Catégories
+
+Affichage dynamique des artisans selon la catégorie.
+
+### Détail artisan
+
+Affichage :
+
+* image
+* description
+* note
+* spécialité
+* formulaire de contact
+
+### Recherche
+
+Recherche dynamique d’artisans.
+
+### Page 404
+
+Page personnalisée pour les routes inexistantes.
+
+# Responsive design
+
+Le site a été développé avec Bootstrap afin d’être compatible :
+
+* mobile
+* tablette
+* desktop
+
+Des media queries Sass ont également été ajoutées.
+
+# Accessibilité
+
+Plusieurs règles d’accessibilité ont été respectées :
+
+* structure HTML correcte
+* labels de formulaires
+* contrastes de couleurs
+* navigation clavier
+* focus visibles
+* balises sémantiques
+
+# SEO
+
+Un composant SEO dynamique a été développé.
+
+Il permet de modifier :
+
+* le titre des pages
+* la meta description
+
+Cela améliore le référencement naturel.
+
+# Fonctionnement du formulaire de contact
+
+Le formulaire React envoie les données à l’API Express.
+
+Le backend :
+
+* valide les données
+* enregistre le message en base
+* peut envoyer un email via Nodemailer
+
+Les erreurs sont gérées côté frontend et backend.
+
+# Git et GitHub
+
+Le projet a été versionné avec Git.
+
+Des commits réguliers ont été réalisés tout au long du développement.
+
+Exemples :
+
+Création des routes API REST artisans et catégories
+Ajout du formulaire de contact sécurisé
+Ajout middleware erreurs et sécurisation API
+Connexion React avec API et page détail artisan
+Ajout page catégorie dynamique et recherche artisans
+
+
+# Difficultés rencontrées
+
+Plusieurs difficultés techniques ont été rencontrées :
+
+* configuration MySQL
+* gestion des routes Express
+* connexion React/API
+* configuration CORS
+* validations formulaire
+* configuration Nodemailer
+* gestion des erreurs React
+
+Ces problèmes ont été résolus progressivement.
+
+# Améliorations possibles
+
+Le projet pourrait être amélioré avec :
+
+* authentification utilisateur
+* espace artisan
+* ajout d’avis clients
+* upload d’images
+* pagination
+* filtres avancés
+* déploiement cloud complet
+
+# Conclusion
+
+Ce projet a permis de développer une application Full Stack complète en utilisant des technologies modernes.
+
+Il a également permis de mettre en pratique :
+
+* le développement React
+* la création d’API REST
+* la sécurité backend
+* la gestion d’une base de données relationnelle
+* l’architecture MVC
+* le responsive design
+* le référencement SEO
+* Git et GitHub
+
+Le projet répond aux objectifs demandés dans le brief et respecte les principales contraintes techniques et fonctionnelles.
