@@ -1,3 +1,6 @@
+/**
+ * Variables couleurs principales
+ */
 $primary: #0074c7;
 $secondary: #00497c;
 $dark: #384050;
@@ -5,74 +8,132 @@ $light: #f1f8fc;
 $danger: #cd2c2e;
 $success: #82b864;
 
+/**
+ * Style global body
+ */
 body {
   margin: 0;
+
   background-color: $light;
+
   color: $dark;
+
   font-family: Arial, sans-serif;
 }
 
+/**
+ * Hauteur minimale contenu principal
+ */
 main {
   min-height: 70vh;
 }
 
+/**
+ * Suppression soulignement liens
+ */
 a {
   text-decoration: none;
 }
 
+/**
+ * Bouton principal personnalisé
+ */
 .btn-primary {
   background-color: $primary;
+
   border-color: $primary;
 }
 
+/**
+ * Hover bouton principal
+ */
 .btn-primary:hover {
   background-color: $secondary;
+
   border-color: $secondary;
 }
 
+/**
+ * Couleur logo/navbar
+ */
 .navbar-brand {
   color: $secondary;
 }
 
+/**
+ * Style images cartes artisans
+ */
 .card-img-top {
   height: 120px;
+
   width: 100%;
+
   object-fit: contain;
+
   background-color: #ffffff;
+
   padding: 15px;
 }
 
+/**
+ * Style cartes Bootstrap
+ */
 .card {
   border-radius: 12px;
 }
 
+/**
+ * Footer principal
+ */
 footer {
   background-color: $dark;
 }
 
+/**
+ * Hover liens footer + navbar
+ */
 footer a:hover,
 .nav-link:hover {
   text-decoration: underline;
 }
 
+/**
+ * Images responsives
+ */
 img {
   max-width: 100%;
 }
 
+/**
+ * Accessibilité focus clavier
+ */
 :focus {
   outline: 3px solid $primary;
+
   outline-offset: 3px;
 }
 
+/**
+ * Responsive mobile/tablette
+ */
 @media (max-width: 768px) {
+  /**
+   * Réduction taille titres
+   */
   h1 {
     font-size: 2rem;
   }
 
+  /**
+   * Largeur formulaire navbar
+   */
   .navbar form {
     width: 100%;
   }
 
+  /**
+   * Largeur champ recherche
+   */
   .navbar input {
     width: 100%;
   }
