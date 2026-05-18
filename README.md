@@ -100,6 +100,21 @@ Validation backend avec express-validator
 Requêtes SQL sécurisées via Sequelize
 Variables sensibles stockées dans .env
 
+### Validation W3W
+
+Les validations HTML et CSS sont disponibles dans :
+
+docs/validation/w3c-html.png
+docs/validation/w3c-css.png
+
+### Application en ligne
+
+Frontend :
+https://mon-site.vercel.app
+
+Backend API :
+https://mon-api.onrender.com
+
 ### Auteur
 
 Projet réalisé par Jimmy Châtelier dans le cadre du devoir “Trouve ton artisan”.

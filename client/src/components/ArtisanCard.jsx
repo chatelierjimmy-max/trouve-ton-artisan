@@ -5,7 +5,7 @@ import artisanDefault from "../assets/artisan-default.png";
 function ArtisanCard({ artisan }) {
   return (
     <div className="col-md-6 col-lg-4 mb-4">
-      <div className="card h-100 shadow-sm border-0">
+      <article className="card h-100 shadow-sm border-0">
         <img
           src={artisan.image || artisanDefault}
           alt={artisan.name}
@@ -33,11 +33,12 @@ function ArtisanCard({ artisan }) {
           <Link
             to={`/artisan/${artisan.slug}`}
             className="btn btn-primary w-100"
+            aria-label={`Voir le profil de ${artisan.name}`}
           >
             Voir le profil
           </Link>
         </div>
-      </div>
+      </article>
     </div>
   );
 }

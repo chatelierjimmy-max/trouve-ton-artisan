@@ -55,6 +55,7 @@ function SearchBar() {
         type="search"
         className="form-control me-2"
         placeholder="Rechercher un artisan..."
+        aria-label="Rechercher un artisan"
         value={query}
         onChange={(event) => setQuery(event.target.value)}
       />
@@ -62,7 +63,11 @@ function SearchBar() {
       {/*
         Bouton recherche
       */}
-      <button type="submit" className="btn btn-primary">
+      <button
+        type="submit"
+        className="btn btn-primary"
+        aria-label="Lancer la recherche"
+      >
         Rechercher
       </button>
     </form>
