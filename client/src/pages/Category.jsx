@@ -42,70 +42,42 @@ function Category() {
   const [loading, setLoading] = useState(true);
 
   /**
+   * Conversion des slugs frontend vers les slugs API
+   */
+  const apiSlug = slug === "plomberie" ? "plombier" : slug;
+
+  /**
    * Chargement artisans catégorie
    */
   useEffect(() => {
-    /**
-     * Fonction récupération API
-     */
     const fetchArtisans = async () => {
       try {
-        /**
-         * Appel API catégorie
-         */
-        const response = await api.get(`/artisans/category/${slug}`);
+        const response = await api.get(`/artisans/category/${apiSlug}`);
 
-        /**
-         * Mise à jour état artisans
-         */
         setArtisans(response.data);
       } catch (error) {
-        /**
-         * Gestion erreur API
-         */
         console.error(error);
       } finally {
-        /**
-         * Fin chargement
-         */
         setLoading(false);
       }
     };
 
-    /**
-     * Exécution récupération artisans
-     */
     fetchArtisans();
-  }, [slug]);
+  }, [apiSlug]);
 
   return (
-    /**
-     * Contenu principal page catégorie
-     */
     <section className="container py-5">
-      {/*
-        Titre catégorie
-      */}
       <div className="mb-5">
         <h1 className="display-5 text-capitalize">Catégorie : {slug}</h1>
 
         <p className="lead">Découvrez les artisans de cette catégorie.</p>
       </div>
 
-      {/*
-        Affichage chargement
-      */}
       {loading ? (
         <p>Chargement...</p>
       ) : artisans.length === 0 ? (
-        /**
-         * Aucun artisan trouvé
-         */
         <p>Aucun artisan trouvé.</p>
       ) : (
-        /**
-         * Liste artisans
-         */
         <div className="row">
           {artisans.map((artisan) => (
             <ArtisanCard key={artisan.id} artisan={artisan} />
@@ -116,7 +88,4 @@ function Category() {
   );
 }
 
-/**
- * Export du composant Category
- */
 export default Category;
