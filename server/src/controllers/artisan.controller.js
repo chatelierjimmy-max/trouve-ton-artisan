@@ -127,7 +127,8 @@ exports.searchArtisans = async (req, res) => {
 };
 
 /**
- * Récupérer les artisans selon une catégorie
+ * Récupérer les artisans selon une spécialité
+ * Exemple : /api/artisans/category/plombier
  */
 exports.getArtisansByCategory = async (req, res) => {
   try {
@@ -136,15 +137,10 @@ exports.getArtisansByCategory = async (req, res) => {
         {
           model: Specialty,
           required: true,
-          include: [
-            {
-              model: Category,
-              required: true,
-              where: {
-                slug: req.params.category,
-              },
-            },
-          ],
+          where: {
+            slug: req.params.category,
+          },
+          include: [Category],
         },
       ],
     });
