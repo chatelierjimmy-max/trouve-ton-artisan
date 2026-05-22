@@ -44,7 +44,11 @@ function Category() {
   /**
    * Conversion des slugs frontend vers les slugs API
    */
-  const apiSlug = slug === "plomberie" ? "plombier" : slug;
+  const slugMap = {
+    plomberie: "plombier",
+  };
+
+  const apiSlug = slugMap[slug] || slug;
 
   /**
    * Chargement artisans catégorie
