@@ -79,7 +79,7 @@ Résultat attendu :
 - aucune erreur Vercel 404: NOT_FOUND
 - aucune page blanche
 
-## 3. Tests de navigation
+## 3. Tests de navigation.
 
 Depuis le menu principal, tester les pages suivantes :
 
