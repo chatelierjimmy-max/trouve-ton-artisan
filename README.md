@@ -216,6 +216,47 @@ Les validations HTML et CSS sont disponibles dans :
 docs/validation/w3c-html.png
 docs/validation/w3c-css.png
 
+## Déploiement
+
+Le projet est déployé avec l’architecture suivante :
+
+- Frontend : Vercel
+- Backend API : Render
+- Base de données : MySQL sur Clever Cloud
+
+---
+
+## URLs de production
+
+### Frontend
+
+https://trouve-ton-artisan-sepia.vercel.app
+
+### Backend API
+
+https://trouve-ton-artisan-8chh.onrender.com
+
+---
+
+## Variables d’environnement
+
+### Frontend (Vercel)
+
+````env
+VITE_API_URL=https://trouve-ton-artisan-8chh.onrender.com
+
+### Backend (Render)
+
+```env
+DB_HOST=
+DB_PORT=3306
+DB_NAME=
+DB_USER=
+DB_PASSWORD=
+CLIENT_URL=https://trouve-ton-artisan-sepia.vercel.app
+NODE_ENV=production
+````
+
 ## Application en ligne
 
 Frontend :
@@ -233,3 +274,7 @@ Projet réalisé par Jimmy Châtelier dans le cadre du devoir “Trouve ton arti
 ## Licence
 
 Projet pédagogique réalisé dans le cadre de la formation développeur web CEF.
+
+```
+
+```
